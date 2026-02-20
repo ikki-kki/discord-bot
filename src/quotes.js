@@ -1,0 +1,71 @@
+const QUOTES = [
+  { text: "성공은 매일 반복한 작은 노력들의 합이다.", author: "로버트 콜리어" },
+  { text: "시작이 반이다.", author: "플라톤" },
+  { text: "오늘 할 일을 내일로 미루지 마라.", author: "벤자민 프랭클린" },
+  { text: "작은 일에 충실한 사람은 큰 일을 감당할 수 있다.", author: "마틴 루터 킹" },
+  { text: "실패는 성공의 어머니다.", author: "토마스 에디슨" },
+  { text: "노력은 배신하지 않는다.", author: "이순신" },
+  { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+  { text: "성공은 최종적인 것이 아니며, 실패는 치명적인 것이 아니다. 중요한 것은 계속하는 용기다.", author: "윈스턴 처칠" },
+  { text: "오늘 하루를 어떻게 보내느냐가 인생을 결정한다.", author: "존 C. 맥스웰" },
+  { text: "작은 개선이 쌓여 큰 변화를 만든다.", author: "제임스 클리어" },
+  { text: "시작할 때가 가장 서툴 때다. 그래서 시작하는 것이다.", author: "세스 고딘" },
+  { text: "목표를 세우고 매일 한 걸음씩 나아가라.", author: "토니 로빈스" },
+  { text: "습관이 인생을 만든다.", author: "아리스토텔레스" },
+  { text: "어제의 나와 경쟁하라.", author: "빌 브래드리" },
+  { text: "할 수 있다고 믿든 할 수 없다고 믿든, 당신이 옳다.", author: "헨리 포드" },
+  { text: "성공은 우연이 아니다. 노력, 인내, 학습의 결과다.", author: "펠레" },
+  { text: "한 걸음씩 꾸준히 걸어가면 결국 목적지에 도착한다.", author: "공자" },
+  { text: "오늘 당신이 한 일이 내일의 당신을 만든다.", author: "짐 론" },
+  { text: "Do it now. Sometimes 'later' becomes 'never'.", author: "Unknown" },
+  { text: "성장은 불편함 속에서 일어난다.", author: "브레네 브라운" },
+  { text: "매일 1%씩 나아지면 1년 후 37배 나아진다.", author: "제임스 클리어" },
+  { text: "과정을 사랑하면 결과도 따라온다.", author: "짐 론" },
+  { text: "당신이 할 수 있다고 믿든, 할 수 없다고 믿든, 둘 다 맞다.", author: "헨리 포드" },
+  { text: "작은 습관이 인생을 바꾼다.", author: "제임스 클리어" },
+  { text: "오늘의 투자가 내일의 수확이다.", author: "Unknown" },
+  { text: "성공은 끝이 아니며, 실패도 치명적이지 않다. 중요한 것은 계속하는 용기다.", author: "윈스턴 처칠" },
+  { text: "당신의 한계는 당신의 마음이 정한 것이다.", author: "브루스 리" },
+  { text: "지금 시작하라. 완벽한 순간은 오지 않는다.", author: "나폴레온 힐" },
+  { text: "반복이 완벽을 만든다.", author: "Unknown" },
+  { text: "오늘 당신이 심은 씨앗이 내일의 수확이 된다.", author: "Unknown" },
+  { text: "The best time to plant a tree was 20 years ago. The second best time is now.", author: "중국 속담" },
+  { text: "꾸준함이 천재를 이긴다.", author: "Unknown" },
+  { text: "당신의 미래는 오늘 당신이 하는 선택으로 만들어진다.", author: "오프라 윈프리" },
+  { text: "한 걸음이 천 리의 여정을 시작한다.", author: "노자" },
+  { text: "습관을 바꾸면 인생이 바뀐다.", author: "워렌 버핏" },
+  { text: "매일 조금씩, 꾸준히.", author: "Unknown" },
+  { text: "성공은 준비와 기회의 만남이다.", author: "보비 언저" },
+  { text: "오늘의 노력이 내일의 실력이 된다.", author: "Unknown" },
+  { text: "시작하지 않으면 끝도 없다.", author: "Unknown" },
+  { text: "두려움을 느낄 때가 바로 도전할 때다.", author: "조지 애디어" },
+  { text: "불가능이란 실패한 사람들의 변명이다.", author: "웨인 그레츠키" },
+  { text: "성공의 비결은 시작하는 것이다.", author: "마크 트웨인" },
+  { text: "인생은 10%는 내게 일어나는 일, 90%는 그에 대한 내 반응이다.", author: "찰스 스윈돌" },
+  { text: "위대한 일을 하는 유일한 방법은 당신이 하는 일을 사랑하는 것이다.", author: "Steve Jobs" },
+  { text: "포기하지 마라. 지금이 가장 힘들 때일 수 있다.", author: "Unknown" },
+  { text: "당신이 생각하는 만큼 당신은 강하다.", author: "엘리너 루즈벨트" },
+  { text: "어제로부터 배우고, 오늘을 위해 살고, 내일을 희망하라.", author: "알베르트 아인슈타인" },
+  { text: "성공은 넘어질 때마다 한 번씩 더 일어서는 것이다.", author: "메리 케이 애시" },
+  { text: "당신의 시간은 제한되어 있다. 그러니 다른 사람의 인생을 사느라 낭비하지 마라.", author: "Steve Jobs" },
+  { text: "꿈을 계속 간직하고 있으면 반드시 실현할 시기가 온다.", author: "괴테" },
+  { text: "The secret of getting ahead is getting started.", author: "Mark Twain" },
+  { text: "어려움은 끝이 있다. 포기는 없다.", author: "Unknown" },
+  { text: "우리의 가장 큰 영광은 한 번도 넘어지지 않는 것이 아니라 넘어질 때마다 일어서는 데 있다.", author: "공자" },
+  { text: "오늘의 선택이 5년 후의 당신을 만든다.", author: "짐 론" },
+  { text: "행동은 모든 성공의 기본 열쇠다.", author: "파블로 피카소" },
+  { text: "기다리는 사람에게도 기회는 온다. 다만 열심히 뛰는 사람에게 더 빨리 온다.", author: "린컨" },
+  { text: "끝까지 해보기 전에는 절대 포기하지 마라.", author: "해리엇 비처 스토우" },
+  { text: "당신이 변화를 두려워하면 성장도 없다.", author: "로이 T. 베넷" },
+];
+
+/**
+ * 랜덤 명언을 선택하여 Discord 형식으로 반환
+ * @returns {string} "> *"명언"*\n> — 저자명" 형식
+ */
+function getRandomQuote() {
+  const quote = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+  return `> *"${quote.text}"*\n> — ${quote.author}`;
+}
+
+module.exports = { getRandomQuote };
