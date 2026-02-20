@@ -1,7 +1,7 @@
 const cron = require("node-cron");
 const { buildMessage } = require("./templates");
 
-const CHANNEL_ID = process.env.CHANNEL_ID || "1468629910749712576";
+const CHANNEL_ID = process.env.CHANNEL_ID;
 
 /**
  * 점검 리마인더 메시지 전송
@@ -23,6 +23,7 @@ async function sendReminder(client, type) {
       `[${new Date().toISOString()}] Failed to send ${type} reminder:`,
       error
     );
+    throw error;
   }
 }
 
@@ -34,17 +35,29 @@ async function sendReminder(client, type) {
  * @param {import("discord.js").Client} client - Discord 클라이언트
  */
 function startScheduler(client) {
-  cron.schedule("0 10 * * *", () => sendReminder(client, "morning"), {
-    timezone: "Asia/Seoul",
-  });
+  cron.schedule(
+    "0 10 * * *",
+    () => sendReminder(client, "morning").catch(() => {}),
+    {
+      timezone: "Asia/Seoul",
+    }
+  );
 
-  cron.schedule("0 15 * * *", () => sendReminder(client, "midday"), {
-    timezone: "Asia/Seoul",
-  });
+  cron.schedule(
+    "0 15 * * *",
+    () => sendReminder(client, "midday").catch(() => {}),
+    {
+      timezone: "Asia/Seoul",
+    }
+  );
 
-  cron.schedule("0 0 * * *", () => sendReminder(client, "evening"), {
-    timezone: "Asia/Seoul",
-  });
+  cron.schedule(
+    "0 0 * * *",
+    () => sendReminder(client, "evening").catch(() => {}),
+    {
+      timezone: "Asia/Seoul",
+    }
+  );
 
   console.log(
     "Scheduler started: morning 10:00, midday 15:00, evening 00:00 (KST)"
