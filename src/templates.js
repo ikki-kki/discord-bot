@@ -82,7 +82,7 @@ function buildMessage(type, roleMention) {
     throw new Error(`Unknown template type: ${type}`);
   }
 
-  const greeting = `${roleMention} ${config.greeting} ${config.timeLabel} 템플릿을 작성해주세요.`;
+  const greeting = `${roleMention} ${config.greeting} ${config.timeLabel}을 작성해주세요.`;
   const quote = getRandomQuote();
 
   return `${greeting}\n\n${config.template}\n\n${quote}`;

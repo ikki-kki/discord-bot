@@ -2,6 +2,7 @@ const cron = require("node-cron");
 const { buildMessage } = require("./templates");
 
 const CHANNEL_ID = process.env.CHANNEL_ID;
+const ROLE_ID = process.env.ROLE_ID;
 
 /**
  * 점검 리마인더 메시지 전송
@@ -11,7 +12,7 @@ const CHANNEL_ID = process.env.CHANNEL_ID;
 async function sendReminder(client, type) {
   try {
     const channel = await client.channels.fetch(CHANNEL_ID);
-    const roleMention = "@Acc-5기";
+    const roleMention = `<@&${ROLE_ID}>`;
     const content = buildMessage(type, roleMention);
 
     await channel.send(content);
